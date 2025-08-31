@@ -22,6 +22,7 @@ async function generateRoadmap(topic: string) {
     The root of the json should contain only 2 keys, name and subtopics, name should be name of topic and subtopics should be an array of objects, each object again containing name and subtopics. Do not make the depth more than 3
     The output should contain only json and nothing else.
   `)
+  console.log(aiResponse)
   const roadmapJSON = aiResponse.response.replace('```json', '').replace('```', '')
   const roadmap = JSON.parse(roadmapJSON)
   

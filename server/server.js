@@ -8,7 +8,7 @@ const connectDB = require('./config/db'); // Adjust the path as needed
 const authRoutes = require("./routes/authRoutes.js")
 const passport = require("passport")
 const session = require("express-session")
-require("./config/passport.js")
+// require("./config/passport.js")
 const genAiRoutes = require("./routes/genAiRoutes.js");
 
 
@@ -21,7 +21,7 @@ app.use(express.json()); // Parse JSON bodies
 app.use(cookieParser()); // Parse cookies
 
 // Connect to MongoDB
-connectDB();
+// connectDB();
 
 //Routes
 app.use("/api/auth", authRoutes);
