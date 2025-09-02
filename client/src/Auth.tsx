@@ -6,6 +6,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
+interface LoginResponse {
+  token: string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+  };
+}
+
+
 const registerSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters"),
   email: z.string().email("Invalid email address"),
@@ -92,33 +102,41 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {
-    try {
-      setLoading(true);
-      await axios.post("http://localhost:5000/api/auth/login", data);
-        //   alert("Login successful!");
-        Swal.fire({
-            title: "Success!",
-            text: "Login successsful",
-            icon: "success",
-            background: "#1a202c",
-            color: "#fff",
-            confirmButtonColor: "#3085d6",
-        })
-        navigate("/");
-    } catch (error) {
-    //   alert("Login failed. Check your credentials.");
-        Swal.fire({
-            title: "Login Failed",
-            text: 'Invalid Credentials',
-            icon: "error",
-            background: "#1a202c",
-            color: "#fff",
-            confirmButtonColor: "#d33",
-        })
-        } finally {
-        setLoading(false);
-        }
-  };
+  try {
+    setLoading(true);
+
+    const res = await axios.post<LoginResponse>(
+      "http://localhost:5000/api/auth/login",
+      data
+    );
+
+    // yaha safe hai: res.data.token
+    localStorage.setItem("token", res.data.token);
+
+    Swal.fire({
+      title: "Success!",
+      text: "Login successful",
+      icon: "success",
+      background: "#1a202c",
+      color: "#fff",
+      confirmButtonColor: "#3085d6",
+    });
+
+    navigate("/");
+  } catch (error) {
+    Swal.fire({
+      title: "Login Failed",
+      text: "Invalid Credentials",
+      icon: "error",
+      background: "#1a202c",
+      color: "#fff",
+      confirmButtonColor: "#d33",
+    });
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-900 text-white">
