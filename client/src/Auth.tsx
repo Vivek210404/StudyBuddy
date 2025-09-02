@@ -5,6 +5,7 @@ import * as z from "zod";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 interface LoginResponse {
   token: string;
@@ -170,7 +171,7 @@ const Login: React.FC = () => {
           </button>
         </form>
         <p className="mt-4 text-center">
-          Don't have an account? <a href="/register" className="text-blue-400">Register</a>
+           Don't have an account? <Link to="/register" className="text-blue-400">Register</Link>
         </p>
       </div>
     </div>
