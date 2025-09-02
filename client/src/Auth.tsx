@@ -15,6 +15,8 @@ interface LoginResponse {
   };
 }
 
+const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+
 
 const registerSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters"),
@@ -37,9 +39,10 @@ const Register: React.FC = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {
+    console.log("Register form data:", data);
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/api/auth/register", data);
+      await axios.post(`${API_URL}/api/auth/register`, data);
       alert("Registration successful! Check your email to verify.");
       navigate("/login");
     } catch (error) {
@@ -106,7 +109,7 @@ const Login: React.FC = () => {
     setLoading(true);
 
     const res = await axios.post<LoginResponse>(
-      "http://localhost:5000/api/auth/login",
+      `${API_URL}/api/auth/login`,
       data
     );
 

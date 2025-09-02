@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+
 export default function VerifyEmail() {
   const { token } = useParams<{ token: string }>();   // 👈 type safe param
   const [message, setMessage] = useState<string>("Verifying...");
@@ -8,7 +10,7 @@ export default function VerifyEmail() {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/auth/verifyEmail/${token}`);
+        const res = await fetch(`${API_URL}/api/auth/verifyEmail/${token}`);
         const data = await res.json();
         if (res.ok) {
           setMessage("✅ Email verified successfully! You can now login.");
