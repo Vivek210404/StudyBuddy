@@ -20,7 +20,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173", 
-    "https://studybuddy-3y3b.onrender.com"   // 👈 frontend ka deploy URL
+    "https://studybuddy-3y3b.onrender.com"  
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
@@ -30,23 +30,23 @@ app.use(express.json()); // Parse JSON bodies
 app.use(cookieParser()); // Parse cookies
 
 // Connect to MongoDB
-// connectDB();
+connectDB();
 
 //Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/genai", genAiRoutes);
 
 //Google OAuth
-app.use(
-    session({
-      secret: process.env.SESSION_SECRET,
-      resave: false,
-      saveUninitialized: true,
-    })
-  );
+// app.use(
+//     session({
+//       secret: process.env.SESSION_SECRET,
+//       resave: false,
+//       saveUninitialized: true,
+//     })
+//   );
   
-  app.use(passport.initialize());
-  app.use(passport.session());
+  // app.use(passport.initialize());
+  // app.use(passport.session());
 
 // Basic route to confirm the server is running
 app.get('/', (req, res) => {

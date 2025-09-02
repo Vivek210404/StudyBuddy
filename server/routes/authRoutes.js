@@ -23,20 +23,20 @@ const generateJWT = (user) => {
 };
  
 // Google Auth Route
-router.get(
-    "/google",
-    passport.authenticate("google", { scope: ["profile", "email"] })
-  );
+// router.get(
+//     "/google",
+//     passport.authenticate("google", { scope: ["profile", "email"] })
+//   );
   
   // Google Auth Callback
-  router.get(
-    "/google/callback",
-    passport.authenticate("google", { failureRedirect: "/login", session: false }), // Disable session
-    (req, res) => {
-      // Generate JWT token here
-      const token = generateJWT(req.user); // Implement JWT generation logic
+  // router.get(
+  //   "/google/callback",
+  //   passport.authenticate("google", { failureRedirect: "/login", session: false }), // Disable session
+  //   (req, res) => {
+  //     // Generate JWT token here
+  //     const token = generateJWT(req.user); // Implement JWT generation logic
 
-      res.redirect(`http://localhost:5173/login?auth_token=${token}`);
+  //     res.redirect(`http://localhost:5173/login?auth_token=${token}`);
       // res.setHeader('Content-Type', 'text/html')
       // res.send(`
       //   <!DOCTYPE html>
@@ -50,13 +50,13 @@ router.get(
       //   </body>
       //   </html>
       //   `)
-    }
-  );
+  //   }
+  // );
 // Logout
-router.get("/logout", (req, res) => {
-    req.logout(() => {
-      res.redirect("http://localhost:5173/");
-    });
-  });  
+// router.get("/logout", (req, res) => {
+//     req.logout(() => {
+//       res.redirect("http://localhost:5173/");
+//     });
+//   });  
 
 module.exports = router
