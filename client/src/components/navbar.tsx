@@ -38,7 +38,7 @@ export default function Navbar() {
           Home
         </Link>
         <Link
-          to="/"
+          to="/about"
           className="border-b-2 border-transparent hover:border-white transition-all duration-300"
         >
           About

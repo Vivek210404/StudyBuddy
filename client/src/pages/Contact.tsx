@@ -3,7 +3,9 @@ import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 export default function Contact() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
-      <h1 className="text-4xl font-bold mb-8">Contact Me</h1>
+      <h1 className="text-5xl md:text-6xl font-extrabold mb-8 text-center">
+        Contact <span className="text-blue-500">Us</span>
+      </h1>
       <div className="flex gap-10">
         {/* LinkedIn */}
         <a
