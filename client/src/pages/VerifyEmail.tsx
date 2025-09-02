@@ -13,12 +13,12 @@ export default function VerifyEmail() {
         const res = await fetch(`${API_URL}/api/auth/verifyEmail/${token}`);
         const data = await res.json();
         if (res.ok) {
-          setMessage("✅ Email verified successfully! You can now login.");
+          setMessage("Email verified successfully! You can now login.");
         } else {
-          setMessage(`❌ Verification failed: ${data.message}`);
+          setMessage(`Verification failed: ${data.message}`);
         }
       } catch (err) {
-        setMessage("❌ Something went wrong");
+        setMessage("Something went wrong");
       }
     };
     if (token) verify();

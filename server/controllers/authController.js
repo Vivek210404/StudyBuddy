@@ -98,22 +98,22 @@ const forgotPassword =  async (req, res) => {
   try {
     const { email } = req.body;
 
-    // ✅ 1. Check if the email exists
+    // 1. Check if the email exists
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // ✅ 2. Generate a secure reset token
+    // 2. Generate a secure reset token
     const resetToken = crypto.randomBytes(32).toString("hex");
     const resetTokenExpiry = Date.now() + 10 * 60 * 1000; // Token valid for 10 mins
 
-    // ✅ 3. Save token & expiry in the database
+    // 3. Save token & expiry in the database
     user.resetToken = resetToken;
     user.resetTokenExpiry = resetTokenExpiry;
     await user.save();
 
-    // ✅ 4. Send password reset email
+    // 4. Send password reset email
     const resetLink = `http://localhost:5173/resetPassword/${resetToken}`;
 
     // Configure Nodemailer
@@ -149,7 +149,7 @@ const resetPassword = async (req, res) => {
     const { token } = req.params;
     const { newPassword } = req.body;
 
-    // ✅ 1. Find user by token & check expiry
+    // 1. Find user by token & check expiry
     const user = await User.findOne({
       resetToken: token,
       resetTokenExpiry: { $gt: Date.now() },
@@ -159,11 +159,11 @@ const resetPassword = async (req, res) => {
       return res.status(400).json({ message: "Invalid or expired token" });
     }
 
-    // ✅ 2. Hash new password
+    // 2. Hash new password
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(newPassword, salt);
 
-    // ✅ 3. Remove reset token
+    // 3. Remove reset token
     user.resetToken = null;
     user.resetTokenExpiry = null;
 
