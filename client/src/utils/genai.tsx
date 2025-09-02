@@ -1,6 +1,6 @@
 
 export default async function getAIResponse(prompt: string) {
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_HOST}/api/genai/response`, {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/genai/response`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
