@@ -39,7 +39,7 @@ const Register: React.FC = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {
-    console.log("Register form data:", data);
+    // console.log("Register form data:", data);
     try {
       setLoading(true);
       await axios.post(`${API_URL}/api/auth/register`, data);

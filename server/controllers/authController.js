@@ -33,7 +33,9 @@ const registerUser = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
-    await sendEmail(user.email, "Verify Your Email", `Click to verify: http://localhost:5173/verifyEmail/${token}`);
+    const verifyLink = `${process.env.FRONTEND_URL}/verifyEmail/${token}`;
+
+    await sendEmail(user.email, "Verify Your Email", `Click to verify: ${verifyLink}`);
 
     res.status(201).json({ message: "User registered. Check email for verification.", success: true , token:`${token}`  });
   } catch (error) {
