@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from './components/navbar'
+// import Navbar from './components/navbar'
 import Footer from './components/footer'
 import Button from './components/Button'
 import getAIResponse from './utils/genai'
@@ -164,7 +164,7 @@ function TopicInput() {
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <TopicInput />
       <Footer />
     </>
