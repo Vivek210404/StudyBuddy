@@ -144,6 +144,9 @@ function TopicInput() {
   return (
     <>
       <div className='flex flex-col justify-center items-center h-[25vh] text-white'>
+        <p className="text-xl mb-4 font-semibold">
+          StudyBuddy creates a complete learning roadmap for any topic you enter.
+        </p>
         <div className='flex justify-center h-12 gap-5'>
           <input className='w-80 p-4 text-lg border-2 border-blue-500 rounded-[8px] shadow-lg focus:ring-4 focus:ring-blue-300 focus:outline-none' type='text' name='topic' placeholder='What do you want to study?' onChange={(e) => setTopic(e.target.value)} />
           <Button onClick={ async () => {

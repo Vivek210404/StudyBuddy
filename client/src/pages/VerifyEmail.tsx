@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 export default function VerifyEmail() {
-  const { token } = useParams<{ token: string }>();   // 👈 type safe param
+  const { token } = useParams<{ token: string }>(); 
   const [message, setMessage] = useState<string>("Verifying...");
 
   useEffect(() => {
